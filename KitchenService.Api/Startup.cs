@@ -44,7 +44,8 @@ namespace KitchenService.Api
                 options.AddDefaultPolicy(
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:4200")
+                        builder.WithOrigins("http://localhost:4200",
+                                            "https://nick-project2-kitchen-site.azurewebsites.net")
                             .AllowAnyMethod() // allow PUT & DELETE not just GET & POST
                             .AllowAnyHeader()
                             .AllowCredentials();
