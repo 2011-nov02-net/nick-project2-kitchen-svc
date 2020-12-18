@@ -73,6 +73,7 @@ stages:
         scannerMode: 'MSBuild'
         projectKey: '2011-nov02-net_nick-project2-kitchen-svc'
         projectName: 'Nick Kitchen Service'
+        projectVersion: '1.0'
         extraProperties: |
           sonar.cs.vstest.reportsPaths=$(Common.TestResultsDirectory)/*.trx
           sonar.cs.opencover.reportsPaths=$(Common.TestResultsDirectory)/*/coverage.opencover.xml
