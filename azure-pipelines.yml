@@ -7,8 +7,8 @@ pr:
 variables:
   sdkVersion: 5.x
   buildConfiguration: Release
-  solutionPath: KitchenService
-  startupProjectPath: KitchenService/KitchenService.Api
+  solutionPath: .
+  startupProjectPath: KitchenService.Api
 
 stages:
 
