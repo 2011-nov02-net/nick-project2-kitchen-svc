@@ -1,5 +1,6 @@
 using KitchenService.Api.Model;
 using KitchenService.Api.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Formatters;
@@ -49,6 +50,12 @@ namespace KitchenService.Api
                             .AllowCredentials();
                     });
             });
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.Authority = "https://dev-723797.okta.com/oauth2/default";
+                options.Audience = "api://default";
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -65,6 +72,8 @@ namespace KitchenService.Api
             app.UseRouting();
 
             app.UseCors();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using KitchenService.Api.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,6 +29,7 @@ namespace KitchenService.Api.Controllers
 
         // GET /api/appliances/fridge/contents
         [HttpGet("contents")]
+        [Authorize]
         [ProducesResponseType(typeof(IEnumerable<FridgeItem>), StatusCodes.Status200OK)]
         public IActionResult GetContents()
         {

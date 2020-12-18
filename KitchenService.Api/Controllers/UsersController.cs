@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using KitchenService.Api.Model;
 using KitchenService.Api.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KitchenService.Api.Controllers
@@ -16,6 +19,17 @@ namespace KitchenService.Api.Controllers
         public UsersController(INoteRepository noteRepository)
         {
             _noteRepository = noteRepository;
+        }
+
+        // GET: api/users/test
+        [HttpGet("test")]
+        [Authorize]
+        public IActionResult Test()
+        {
+            return new JsonResult(User, new JsonSerializerOptions(JsonSerializerDefaults.Web)
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
         }
 
         // GET: api/users
