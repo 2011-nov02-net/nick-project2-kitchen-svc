@@ -5,7 +5,9 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using KitchenService.Api.Model;
 using KitchenService.Api.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KitchenService.Api.Controllers
@@ -51,10 +53,17 @@ namespace KitchenService.Api.Controllers
             return NotFound();
         }
 
-        // DELETE: api/users/5
-        [HttpDelete("{id}")]
-        public IActionResult DeleteUser(int id)
+        // DELETE: api/users/abc@123.com
+        [HttpDelete("{email}")]
+        [Authorize]
+        public IActionResult DeleteUser(string theEmail)
         {
+            var email = User.FindFirst(ct => ct.Type.Contains("nameidentifier")).Value;
+            if (email != theEmail)
+            {
+                return StatusCode(StatusCodes.Status403Forbidden);
+            }
+
             throw new NotImplementedException();
         }
 
